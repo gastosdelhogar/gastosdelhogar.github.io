@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0B1428">
+<title>Gastos del hogar</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" href="./icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gastos">
+  <script type="module" crossorigin src="./assets/index-CuYpt8pI.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DshwYnTG.css">
+</head>
+<body>
+<div class="wrap gate" id="loadView"><div class="status">Cargando…</div></div>
+
+<div class="wrap gate" id="authView" hidden>
+  <div class="brand"><div class="logo" aria-hidden="true"><svg width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M14 48 L50 18 L86 48" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 41 V80 a4 4 0 0 0 4 4 H72 a4 4 0 0 0 4 -4 V41" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="62" r="15.5" fill="#FFC83D" stroke="#E09A0B" stroke-width="2.5"/><circle cx="50" cy="62" r="10.5" fill="none" stroke="#E09A0B" stroke-width="1.8"/><text x="50" y="68.2" text-anchor="middle" font-family="Arial Black,Arial" font-weight="900" font-size="17" fill="#B9770A">$</text></svg></div><h1>Gastos del hogar</h1><p class="hint">Los gastos de tu hogar, compartidos y al día.</p></div>
+  <section class="card">
+    <div class="tabs" role="tablist" id="authTabs" style="grid-template-columns:1fr 1fr">
+      <button type="button" role="tab" data-a="in" aria-selected="true">Entrar</button>
+      <button type="button" role="tab" data-a="up" aria-selected="false">Crear cuenta</button>
+    </div>
+    <form id="authForm" class="stack" novalidate>
+      <div class="field"><label for="aEmail">Email</label><input class="text" id="aEmail" type="email" autocomplete="email" inputmode="email" required></div>
+      <div class="field"><label for="aPass">Contraseña</label><input class="text" id="aPass" type="password" autocomplete="current-password" minlength="6" required></div>
+      <p class="err" id="authErr" hidden></p>
+      <p class="hint" id="authOk" hidden></p>
+      <button class="primary" type="submit" id="authBtn">Entrar</button>
+      <button type="button" class="link" id="forgot" style="align-self:center">Olvidé mi contraseña</button>
+    </form>
+    <div class="or"><span>o</span></div>
+    <button type="button" class="gbtn" id="googleBtn"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Continuar con Google</button>
+  </section>
+</div>
+
+<div class="wrap gate" id="setupView" hidden>
+  <div class="brand"><h1>Tu hogar</h1><p class="hint">Creá un hogar nuevo o sumate al de tu familia con el código que te pasen.</p></div>
+  <section class="card">
+    <h2>Crear un hogar</h2>
+    <form id="createForm" class="stack" novalidate>
+      <div class="field"><label for="hNombre">Nombre</label><input class="text" id="hNombre" maxlength="40" placeholder="Ej: Casa de Pablo"></div>
+      <button class="primary" type="submit" id="createBtn">Crear hogar</button>
+    </form>
+  </section>
+  <section class="card">
+    <h2>Unirme con un código</h2>
+    <form id="joinForm" class="stack" novalidate>
+      <div class="field"><label for="jCode">Código</label><input class="text code-in" id="jCode" maxlength="6" autocomplete="off" autocapitalize="characters" placeholder="ABC123"></div>
+      <button class="primary" type="submit" id="joinBtn">Unirme</button>
+    </form>
+  </section>
+  <p class="err" id="setupErr" hidden></p>
+  <button type="button" class="link" id="setupOut" style="align-self:center">Cerrar sesión</button>
+</div>
+<div class="wrap" id="appView" hidden>
+  <div class="upd" id="updBar" hidden><span id="updTxt">Hay una versión nueva</span><button type="button" id="updBtn">Descargar</button><button type="button" class="x" id="updX" aria-label="Cerrar">×</button></div>
+  <header class="top"><h1 id="hogarName">Gastos del hogar</h1><button type="button" class="gear" id="btnSettings" aria-label="Ajustes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></header>
+
+  <div class="month">
+    <button type="button" id="prev" aria-label="Mes anterior">‹</button>
+    <div class="label" id="monthLabel">—</div>
+    <button type="button" id="next" aria-label="Mes siguiente">›</button>
+  </div>
+
+  <section class="wallet" aria-label="Plata disponible">
+    <div class="pocket cash">
+      <div class="k">Queda</div>
+      <div class="v num" id="cashLeft">0,00 UYU</div>
+      <div class="sub num" id="cashSub">Anotá el sueldo del mes</div>
+    </div>
+    <div class="pocket bill">
+      <div class="k">Queda en efectivo</div>
+      <div class="v num" id="billLeft">0,00 UYU</div>
+      <div class="sub num" id="billSub">Elegí la categoría Retiro cajero cuando saques plata</div>
+    </div>
+    <div id="cards" style="display:contents"></div>
+  </section>
+
+  <section class="summary" aria-label="Resumen del mes">
+    <div>
+      <div class="eyebrow">Gastado este mes</div>
+      <div class="total num" id="total">0,00 UYU</div>
+      <div class="trend" id="trend" hidden></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="k">Gastos</div><div class="v num" id="byCash">0</div></div>
+      <div class="stat"><div class="k">El más grande</div><div class="v num" id="byCard">0,00 UYU</div><div class="w" id="byCardWhat"></div></div>
+      <div class="stat"><div class="k">Por día</div><div class="v num" id="perDay">0,00 UYU</div></div>
+    </div>
+  </section>
+
+  <section class="card" aria-label="Anotar">
+    <div class="photo-row" id="btnPhoto">
+      <button type="button" class="photo-btn" id="btnQr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>Escanear QR</button>
+      <button type="button" class="photo-btn" id="btnQrFoto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>QR desde foto</button>
+    </div>
+    <input type="file" id="qrIn" accept="image/*" hidden>
+    <div class="tabs" role="tablist" id="tabs">
+      <button type="button" role="tab" data-t="gasto" aria-selected="true">Gasto</button>
+      <button type="button" role="tab" data-t="ingreso" aria-selected="false">Ingreso</button>
+      <button type="button" role="tab" data-t="pago" aria-selected="false">Pagar tarjeta</button>
+    </div>
+    <form id="form" novalidate>
+      <div class="stack">
+        <div class="amount-row"><span class="cur">UYU</span><input id="monto" inputmode="decimal" placeholder="0" autocomplete="off" aria-label="Monto"></div>
+        <div class="field" id="fDesc"><label for="desc" id="descLbl">En qué</label><input class="text" id="desc" placeholder="Ej: Tienda Inglesa, factura de UTE…" maxlength="80" autocomplete="off"></div>
+        <div class="field" id="fCat"><span class="lbl">Categoría</span><div class="chips" id="catChips"></div></div>
+        <div class="field" id="fMedio"><span class="lbl">Cómo pagaste</span>
+          <div class="seg" id="medioSeg"></div>
+          <div class="seg" id="medioCardSeg" hidden></div>
+        </div>
+        <div class="field" id="fPagoCard" hidden><span class="lbl">Qué tarjeta pagás</span><div class="seg" id="pagoSeg"></div></div>
+        <p class="hint" id="tabHint" hidden></p>
+        <div class="field"><label for="fecha">Fecha</label><input class="text num" type="date" id="fecha"></div>
+        <p class="err" id="formErr" hidden></p>
+        <button class="primary" id="btnAdd" type="submit">Guardar gasto</button>
+        <button type="button" class="link" id="cancelEdit" hidden style="align-self:center">Cancelar edición</button>
+              </div>
+    </form>
+  </section>
+
+  <section class="card" aria-labelledby="hRv" id="rvCard" hidden>
+    <h2 id="hRv">Gasto leído del QR</h2>
+    <p class="hint" id="rvMsg"></p>
+    <div class="field" id="rvMedioF" hidden><span class="lbl">Cómo se pagaron</span><div class="seg" id="rvMedio"></div><div class="seg" id="rvMedioCard" hidden></div></div>
+    <div class="rv-list" id="rvList"></div>
+    <div class="rv-actions" id="rvActions" hidden><button type="button" class="ghost" id="rvCancel">Descartar</button><button type="button" class="primary" id="rvSave">Guardar</button></div>
+  </section>
+
+  <section class="card" aria-labelledby="hCats" id="catsCard" hidden>
+    <h2 id="hCats">Por categoría</h2>
+    <div class="cats" id="cats"></div>
+  </section>
+
+  <section class="card" aria-labelledby="hList">
+    <h2 id="hList">Movimientos</h2>
+    <div id="list"><div class="status">Cargando…</div></div>
+  </section>
+  <section class="card" aria-labelledby="hTrend">
+    <h2 id="hTrend">Mes a mes</h2>
+    <div class="legend"><span><i class="sw" style="background:var(--accent)"></i>Gastos</span><span><i class="sw" style="background:var(--good);border-radius:50%"></i>Ingresos</span></div>
+    <div class="chart" id="chart"></div>
+    <div class="tbl-wrap"><table class="cmp" id="cmp"></table></div>
+  </section>
+
+  <section class="card" aria-labelledby="hCatCmp" id="catCmpCard" hidden>
+    <h2 id="hCatCmp">Categorías vs. mes anterior</h2>
+    <div class="legend"><span><i class="sw" style="background:var(--accent)"></i><span id="lgNow">Este mes</span></span><span><i class="sw" style="background:rgba(255,255,255,.28)"></i><span id="lgPrev">Anterior</span></span></div>
+    <div class="cc-list" id="catCmp"></div>
+  </section>
+  <section class="card" aria-labelledby="hMix" id="mixCard" hidden>
+    <h2 id="hMix">En qué se va el dinero, mes a mes</h2>
+    <div class="legend" id="mixLegend"></div>
+    <div class="mix-list" id="mix"></div>
+    <div class="tbl-wrap"><table class="cmp heat" id="heat"></table></div>
+  </section>
+</div>
+
+<dialog id="dlg">
+  <form id="cardForm" class="stack">
+    <h2 style="font-family:var(--display);margin:0;font-size:1.15rem" id="cTitle">Tarjeta</h2>
+    <div class="field"><label for="cNombre">Nombre</label><input class="text" id="cNombre" maxlength="24" placeholder="Ej: PassCard, OCA, Visa BROU"></div>
+    <div class="field"><label for="cLimite">Límite</label><input class="text num" id="cLimite" inputmode="decimal" placeholder="Ej: 80000"></div>
+    <div class="field"><label for="cDisp">Disponible hoy</label><input class="text num" id="cDisp" inputmode="decimal" placeholder="Lo que dice tu app del banco"></div>
+    <p class="hint">Cada gasto con esta tarjeta se descuenta del disponible. Cuando pagues la tarjeta, volvé acá y poné el disponible nuevo que dice el banco.</p>
+    <p class="err" id="cardErr" hidden></p>
+    <div class="actions"><button type="button" class="ghost danger" id="delCard" hidden>Borrar</button><span style="flex:1"></span><button type="button" class="ghost" id="cancelCard">Cancelar</button><button type="submit" class="primary" style="padding:9px 16px">Guardar</button></div>
+  </form>
+</dialog>
+<dialog id="catDlg">
+  <div class="stack" id="catListView">
+    <h2 style="font-family:var(--display);margin:0;font-size:1.15rem">Categorías</h2>
+    <p class="hint">Son las mismas para todo el hogar. Si borrás una, los gastos que ya estaban anotados la conservan.</p>
+    <div class="stack" id="catList" style="gap:6px"></div>
+    <button type="button" class="ghost" id="catAdd">+ Nueva categoría</button>
+    <div class="field" id="catHiddenF" hidden><span class="lbl">Borradas</span><div class="stack" id="catHidden" style="gap:6px"></div></div>
+    <p class="err" id="catErr" hidden></p>
+    <div class="actions"><button type="button" class="primary" id="catClose" style="padding:9px 16px">Listo</button></div>
+  </div>
+  <form class="stack" id="catForm" hidden>
+    <h2 style="font-family:var(--display);margin:0;font-size:1.15rem" id="catFTitle">Nueva categoría</h2>
+    <div class="field"><label for="catName">Nombre</label><input class="text" id="catName" maxlength="24" placeholder="Ej: Ropa, Colegio, Perro"></div>
+    <div class="field"><span class="lbl">Ícono</span><div class="pick-grid" id="catIcons"></div></div>
+    <div class="field"><span class="lbl">Color</span><div class="pick-grid" id="catColors"></div></div>
+    <p class="err" id="catFErr" hidden></p>
+    <div class="actions"><button type="button" class="ghost danger" id="catDel" hidden>Borrar</button><span style="flex:1"></span><button type="button" class="ghost" id="catBack">Cancelar</button><button type="submit" class="primary" style="padding:9px 16px">Guardar</button></div>
+  </form>
+</dialog>
+<dialog id="exitDlg">
+  <div class="stack">
+    <h2 style="font-family:var(--display);margin:0;font-size:1.15rem">¿Querés salir de la app?</h2>
+    <div class="actions"><button type="button" class="ghost" id="exitNo">Cancelar</button><button type="button" class="primary" id="exitYes" style="padding:9px 16px">Salir</button></div>
+  </div>
+</dialog>
+
+<dialog id="setDlg">
+  <div class="stack">
+    <h2 style="font-family:var(--display);margin:0;font-size:1.15rem">Ajustes</h2>
+    <div class="field"><span class="lbl">Hogar</span><div class="set-name" id="sHogar">—</div></div>
+    <div class="field"><label for="sLang">Idioma</label>
+      <select class="text" id="sLang"><option value="">Automático (el del celular)</option><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option></select>
+    </div>
+    <div class="field"><label for="sMoneda">Moneda</label>
+      <select class="text" id="sMoneda"><option value="UYU">Pesos uruguayos (UYU)</option><option value="USD">Dólares (USD)</option><option value="EUR">Euros (EUR)</option><option value="CAD">Dólares canadienses (CAD)</option><option value="ARS">Pesos argentinos (ARS)</option><option value="BRL">Reales (BRL)</option></select>
+      <p class="hint">Cambia cómo se muestran los montos para todo el hogar. No convierte los montos ya anotados.</p>
+    </div>
+    <div class="field"><span class="lbl">Código para invitar</span>
+      <div class="code-box"><span class="code num" id="sCode">——</span><button type="button" class="ghost" id="sCopy">Copiar</button></div>
+      <p class="hint">Pasale este código a tu familia. Instalan la app, crean su cuenta y eligen "Unirme con un código".</p>
+    </div>
+    <div class="field"><span class="lbl">Integrantes</span><ul class="members" id="sMembers"></ul></div>
+    <div class="field"><span class="lbl">Tarjetas</span><div class="stack" id="sCards" style="gap:6px"></div><button type="button" class="ghost" id="sAddCard">+ Agregar tarjeta</button></div>
+    <div class="field"><span class="lbl">Categorías</span><button type="button" class="ghost" id="sCats">Editar categorías</button><p class="hint">Agregá, cambiá o borrá las categorías de gastos. Son las mismas para todo el hogar.</p></div>
+    <div class="field"><span class="lbl">Respaldo</span>
+      <div class="rv-actions"><button type="button" class="ghost" id="sExport">Exportar</button><button type="button" class="ghost" id="sImport">Importar archivo</button></div>
+      <button type="button" class="ghost" id="sPasteBtn">Pegar respaldo como texto</button>
+      <div class="stack" id="sPasteBox" hidden style="gap:6px"><textarea class="text" id="sPaste" rows="5" placeholder="Pegá acá el texto del respaldo" style="font-size:.75rem;font-family:monospace;resize:vertical"></textarea><button type="button" class="primary" id="sPasteGo" style="padding:9px">Importar texto</button></div>
+      <input type="file" id="sImportIn" accept="application/json,.json" hidden>
+      <p class="hint" id="sMsg" hidden></p>
+    </div>
+    <div class="field" id="sNotifF" hidden><span class="lbl">Cargar gastos desde las notificaciones</span>
+      <p class="hint" style="margin:0">La app lee las notificaciones de pago (Wallet, Prex, Mercado Pago, tu banco) y te sugiere los gastos para que los confirmes. Lo que dicen las notificaciones queda en tu celular.</p>
+      <p class="hint" id="sNotifState" style="margin:0;font-weight:700"></p>
+      <button type="button" class="ghost" id="sNotifBtn">Activar</button>
+      <p class="hint" id="sNotifHelp" hidden>Si Android dice "Configuración restringida": andá a Ajustes del celular → Aplicaciones → Gastos del hogar → menú ⋮ (arriba a la derecha) → "Permitir configuración restringida", y probá de nuevo.</p>
+    </div>
+    <div class="field"><span class="lbl">App</span>
+      <p class="hint" id="sVersion" style="margin:0"></p>
+      <button type="button" class="ghost" id="sTutorial">Ver tutorial</button>
+      <button type="button" class="ghost" id="sCheckUpd">Buscar actualización</button>
+      <p class="hint" id="sUpdMsg" hidden></p>
+    </div>
+    <p class="hint">Sesión: <span id="sEmail"></span></p>
+    <div class="field"><span class="lbl">Cuenta</span>
+      <button type="button" class="ghost danger" id="sDelete">Borrar mi cuenta</button>
+      <p class="hint" id="sDelMsg" hidden></p>
+    </div>
+    <div class="actions"><button type="button" class="ghost danger" id="sOut">Cerrar sesión</button><span style="flex:1"></span><button type="button" class="primary" id="sClose" style="padding:9px 16px">Listo</button></div>
+  </div>
+</dialog>
+
+</body>
+</html>

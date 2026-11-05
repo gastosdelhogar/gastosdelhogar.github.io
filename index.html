@@ -7,6 +7,11 @@
 <p class="muted" id="ver">Última versión</p>
 <p class="muted">Al abrir el archivo, si Android pide permiso para instalar apps desconocidas, tocá <b>Configuración</b>, permitilo y volvé atrás.</p>
 </div>
+<div class="box">
+<p><b>¿Tenés iPhone o querés usarla en la computadora?</b><br>Usá la versión web, con la misma cuenta y los mismos gastos.</p>
+<p><a class="btn" href="app/">Abrir la versión web</a></p>
+<p class="muted">En iPhone: abrila en Safari, tocá <b>Compartir</b> (el cuadrado con la flecha) y elegí <b>Agregar a pantalla de inicio</b>. Queda como una app más.</p>
+</div>
 <p class="muted"><a href="privacidad.html">Política de privacidad</a> · <a href="borrar-cuenta.html">Borrar cuenta</a></p>
 </main>
 <script>fetch("version.json",{cache:"no-store"}).then(r=>r.json()).then(v=>{document.getElementById("ver").textContent="Versión "+v.versionName}).catch(()=>{})</script>
